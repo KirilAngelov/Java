@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class BodyPart {
@@ -17,6 +18,20 @@ public class BodyPart {
 	}
 	public void draw(Graphics g) 
 	{
-		
+		g.setColor(Color.YELLOW);
+		g.fillRect(xCoordinate*width, yCoordinate*heigth, width, heigth);
 	}
+	public int getxCoordinate() {
+		return xCoordinate;
+	}
+	public void setxCoordinate(int xCoordinate) {
+		this.xCoordinate = xCoordinate;
+	}
+	public int getyCoordinate() {
+		return yCoordinate;
+	}
+	public void setyCoordinate(int yCoordinate) {
+		this.yCoordinate = yCoordinate;
+	}
+	
 }
