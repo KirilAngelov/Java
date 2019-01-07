@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -19,12 +20,17 @@ private BodyPart b;
 private ArrayList<BodyPart> snake;
 private int xCoor=10, yCoor=10, size=5;
 private int ticks=0;
+private Apple apple;
+private ArrayList<Apple> apples;
+private Random r;
 	public GamePanel() 
 	{
 		setFocusable(true);
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		snake=new ArrayList<BodyPart>();
+		apples= new ArrayList<Apple>();
+		r= new Random();
 		start();
 	}
 	public void start() 
@@ -63,6 +69,13 @@ private int ticks=0;
 				//TEST
 			}
 		}
+		if (apples.size()==0) {
+			int xCoor=r.nextInt(49);
+			int yCoor=r.nextInt(49);
+			apple= new Apple(xCoor,yCoor,10);
+			apples.add(apple);
+		}
+		
 		
 	}
 	public void paint(Graphics g) 
@@ -82,6 +95,10 @@ private int ticks=0;
 		for (int i = 0; i < snake.size(); i++) {
 			snake.get(i).draw(g);
 		}
+		for (int i = 0; i < apples.size(); i++) {
+			apples.get(i).draw(g);
+		}
+		
 	}
 	@Override
 	public void run() {
