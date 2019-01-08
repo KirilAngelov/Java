@@ -1,10 +1,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
 import javax.swing.JPanel;
 
@@ -23,8 +26,10 @@ private int ticks=0;
 private Apple apple;
 private ArrayList<Apple> apples;
 private Random r;
+
 	public GamePanel() 
 	{
+		
 		setFocusable(true);
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -32,17 +37,23 @@ private Random r;
 		apples= new ArrayList<Apple>();
 		r= new Random();
 		start();
+		
 	}
-	public void start() 
-	{
-		running=true;
+	public void start() { 
+		
+	
+	    running=true;
 		thread= new Thread(this);
 		thread.start();
+	
 	}
 	public void stop() 
 	{
+	
 		running=false;
+		
 		try {
+			
 			thread.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -54,6 +65,7 @@ private Random r;
 		if (snake.size()==0) {
 			b= new BodyPart(xCoor,yCoor,10);
 			snake.add(b);
+			
 		}
 		ticks++;
 		if (ticks>250000) {
@@ -64,16 +76,47 @@ private Random r;
 			 ticks=0;
 			 b=new BodyPart(xCoor,yCoor,10);
 			 snake.add(b);
+			 
 			 if (snake.size()>size) {
 				snake.remove(0);
-				//TEST
+				
 			}
+			
+		
 		}
+		
 		if (apples.size()==0) {
 			int xCoor=r.nextInt(49);
 			int yCoor=r.nextInt(49);
 			apple= new Apple(xCoor,yCoor,10);
 			apples.add(apple);
+		}
+		
+		//Collision with apple
+		for (int i = 0; i < apples.size(); i++) {
+			if (xCoor==apples.get(i).getxCoordinate()&& yCoor==apples.get(i).getyCoordinate()) {
+				size++;
+				apples.remove(i);
+				i++;
+			}
+		}
+		
+		//Collision with snake body
+		for (int i = 0; i < snake.size(); i++) {
+			if (xCoor==snake.get(i).getxCoordinate() && yCoor==snake.get(i).getyCoordinate()) {
+				if (i!=snake.size()-1) {
+					
+					System.out.println("GAME OVER");
+					
+					stop();
+				}
+			}
+		}
+		if (xCoor<0 || xCoor>49 || yCoor<0 || yCoor>49)  {
+		
+	
+		System.out.println("GAME OVER");
+			stop();
 		}
 		
 		
@@ -98,6 +141,7 @@ private Random r;
 		for (int i = 0; i < apples.size(); i++) {
 			apples.get(i).draw(g);
 		}
+	
 		
 	}
 	@Override

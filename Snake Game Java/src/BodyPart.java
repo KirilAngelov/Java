@@ -4,7 +4,6 @@ import java.awt.Graphics;
 public class BodyPart {
 
 	private int xCoordinate,yCoordinate,width,heigth;
-	
 	public BodyPart(int xCoordinate,int yCoordinate,int tileSize)
 	{
 		this.xCoordinate=xCoordinate;
@@ -20,6 +19,7 @@ public class BodyPart {
 	{
 		g.setColor(Color.YELLOW);
 		g.fillRect(xCoordinate*width, yCoordinate*heigth, width, heigth);
+		
 	}
 	public int getxCoordinate() {
 		return xCoordinate;

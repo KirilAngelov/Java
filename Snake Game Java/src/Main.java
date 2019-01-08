@@ -1,12 +1,13 @@
+import java.lang.reflect.Field;
+
 import javax.swing.JFrame;
 
 public class Main {
 
-	public Main() 
+	public Main()  
 	{
 		JFrame frame= new JFrame();
 		GamePanel gamePanel= new GamePanel();
-		
 		frame.add(gamePanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Snake Game");
@@ -16,9 +17,10 @@ public class Main {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
+		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		new Main();
 
 	}
