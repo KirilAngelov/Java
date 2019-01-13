@@ -129,6 +129,12 @@ private Random r;
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
+		/*for (int i = 0; i < WIDTH/10; i++) {
+		for (int j = 0; j < HEIGHT/10; j++) {
+			g.setColor(Color.RED);
+			g.fillRect(i*10, j*10, WIDTH/10,HEIGHT/10);
+		}
+	}Managed to make red grid with black outline!*/
 		for (int i = 0; i < WIDTH/10; i++) {
 	g.drawLine(i*10, 0, i*10, HEIGHT);
         }
